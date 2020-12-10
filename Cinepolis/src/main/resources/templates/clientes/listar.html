@@ -1,0 +1,150 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+	<header th:replace="layout/layout :: barra"></header>
+
+	<main role="main">
+		<br> <br> <br>
+
+		<div class="container ">
+
+			<div class="card " >
+				<div class="text-center" style="color: red;">
+					<h4 class="card-header  ">
+						<strong>Sección de Clientes</strong>
+					</h4>
+				</div>
+				<div class="card-body">
+					<div class="text-center">
+						<a class="btn btn-primary" th:href="@{/clientes/form}"
+							role="button"><i class="fas fa-file" aria-hidden="true"></i>
+							Agregar cliente</a>
+					</div>
+					<br>
+
+					<div class="text-center">
+						<div class="alert alert-success" th:if="${success != null}"
+							th:text="${success}"></div>
+						<div class="alert alert-danger" th:if="${error != null}"
+							th:text="${error}"></div>
+						<div class="alert alert-warning" th:if="${warning != null}"
+							th:text="${warning}"></div>
+						<div class="alert alert-info" th:if="${info != null}"
+							th:text="${info}"></div>
+
+					</div>
+
+					<table class="table table-hover">
+						<thead class="thead-light">
+							<tr>
+								<th>Info</th>
+								<th>Nombre</th>
+								<th>Apellido</th>
+								<!--  
+								<th>Celular</th>
+								-->
+								<th>Email</th>
+								<!-- 
+								<th>Fecha</th>
+								 -->
+								<th>Dirección</th>
+								<th>Departamento</th>
+								<th>Ciudad</th>
+								<th>Tiket</th>
+								<th>Opciones</th>
+
+
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr th:each="cliente: ${clientes}">
+
+								<td><a th:href="@{ver/}  + ${cliente.id}"
+									class="btn btn-outline-info btn-sm" role="button"
+									title="Información del cliente"><i
+										class="fa fa-info-circle" aria-hidden="true"></i></a></td>
+
+								<td th:text="${cliente.nombre}"></td>
+								<td th:text="${cliente.apellido}"></td>
+								<!-- 
+								<td th:text="${cliente.celular}"></td>
+								 -->
+								<td th:text="${cliente.email}"></td>
+								<!-- 
+								<td th:text="${cliente.fechaTiket}"></td>
+								 -->
+								<td th:text="${cliente.direccion}"></td>
+								<td th:text="${cliente.departamento}"></td>
+								<td th:text="${cliente.ciudad}"></td>
+
+
+								<td><a th:href="@{'/tiket/form/' + ${cliente.id}}"
+									class="btn btn-outline-success btn-sm" role="button"
+									title="Nuevo Tiket"><i class="fas fa-ticket-alt"
+										aria-hidden="true"></i></a></td>
+
+
+
+								<td><a th:href="@{/clientes/form/} + ${cliente.id}"
+									class="btn btn-success btn-sm" role="button" title="Editar"><i
+										class="fas fa-pencil-alt" aria-hidden="true"></i></a> <br /> <br />
+
+									<a th:href="@{/clientes/eliminar/} + ${cliente.id}" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a></td>
+
+							</tr>
+
+						</tbody>
+					</table>
+
+					<nav th:if="${clientes.totalPages > 0}"
+						aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+							<li class="page-item"
+								th:classappend="${clientes.number == 0 ? 'disabled' : ''}">
+								<a
+								th:href="@{/clientes/indexPaginate(page=${clientes.number - 1})}"
+								class="page-link">Anterior</a>
+							</li>
+
+							<li class="page-item"
+								th:classappend="${i eq clientes.number + 1} ? 'active'"
+								th:each="i : ${#numbers.sequence( 1, clientes.totalPages, 1)}">
+								<a class="page-link"
+								th:href="@{/clientes/indexPaginate?page={tmpPag} (tmpPag=${i-1}) }"
+								th:text="${i}" th:title="${'Page '+ i}" data-toggle="tooltip"></a>
+							</li>
+							<li class="page-item"
+								th:classappend="${clientes.number == (clientes.totalPages - 1) ? 'disabled' : ''}">
+								<a
+								th:href="@{/clientes/indexPaginate(page=${clientes.number + 1})}"
+								class="page-link">Siguiente</a>
+							</li>
+						</ul>
+					</nav>
+
+				</div>
+			</div>
+		</div>
+		<!-- /container -->
+		<br />
+	</main>
+
+	<header th:replace="layout/layout :: ajustar"></header>
+
+	<header th:replace="layout/layout :: pie"></header>
+
+	<header th:replace="layout/layout :: carga"></header>
+
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

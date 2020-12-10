@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+	<title>Cinépolis</title>
+	
+</head>
+<body>
+	<header th:replace="layout/layout :: barra"></header>
+
+
+
+	<main>
+		<div class="pelicula-principal">
+			<div class="contenedor">
+				<h3 th:href="@{/}" class="titulo">Cinépolis</h3>
+				<p class="descripcion">
+					Narra las aventuras de un grupo de exploradores que hacen uso de un agujero de gusano recientemente descubierto para superar las limitaciones de los viajes espaciales tripulados y vencer las inmensas distancias que tiene un viaje interestelar.
+				</p>
+				<button role="button" class="boton"><i class="fas fa-play"></i>Reproducir</button>
+				<button role="button" class="boton"><i class="fas fa-info-circle"></i>Más información</button>
+			</div>
+		</div>
+	</main>
+	
+
+      <div class="container"> 
+      
+        <h2 class="font-weight-bold text-center text-capitalize" style="color: white; font: sans-serif;">Cinépolis - Cartelera</h2>
+        <hr>
+        <div class="row" th:each="pelicula : ${peliculas}">
+          <div class="col-md-3">            
+             <img class="img-rounded" th:src="@{/logos/{img} (img=${pelicula.imagen})}"
+							alt="Generic placeholder image" width="220" height="220">
+          </div>
+          
+          <div class="col-md-9">
+            <h2 style="color: white;" th:text="${pelicula.titulo}"></h2>
+            <h4 class="card-title"><strong></strong> <span style="color: white;" th:text="${pelicula.genero.nombre}"  class="badge badge-pill badge-danger"></span></h4>
+            <h4 class="card-title"><strong></strong> <span style="color: white;" th:text="${pelicula.duracion}"  class="badge badge-pill badge-info"></span></h4>
+            <h4 class="card-title"><strong></strong> <span style="color: white;" th:text="${pelicula.clasificacion}"  class="badge badge-pill badge-primary"></span></h4>
+            
+            <h2 class="card-title"><strong style="color: red;"></strong><a><i class="fa fa-usd text-success" aria-hidden="true"></i>
+            </a> <span style="color: white;" th:text="${pelicula.precio}"  class="badge badge-pill badge-success"></span></h2>                
+            <h4 class="card-title"><strong style="color: white; font: sans-serif;"  class="badge badge-pill badge-dark"><a>Estreno <i class="fa fa-calendar text-white " aria-hidden="true"> <span style="color: white;"  th:text="${#dates.format(pelicula.fechaEstreno, 'dd-MM-yyyy')}"></span></i></a> </strong>
+             </h4>
+            
+            <!--               
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+             --> 
+             <!-- 
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>    
+             -->         
+          </div>
+        </div>  
+        
+
+  
+      </div> <!-- /container -->
+
+      
+      	<!-- Sección #bienvenidos -->
+      	<!--  
+	<section id="bienvenidos" class="py-5">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-lg-12 text-center">
+
+					<div
+						class="contenedor-video d-inline-block position-relative text-truncate">
+
+						<img src="images/ven.jpg"
+							alt="Imagen del video promocional del Sitio" class="img-fluid">
+
+						<a href="https://youtu.be/mYTmQWZkw10" class="venobox-video"
+							data-vbtype="video" title="Bienvenidos a Cinépolis."><i
+							class="fas fa-play"></i></a>
+
+					</div>
+
+				</div>
+
+				
+			</div>
+		</div>
+	</section>
+	-->
+	
+	
+	<header th:replace="layout/layout :: carga"></header>
+
+
+	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>

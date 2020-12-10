@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Noticias</title>
+</head>
+<body>
+	<h1>Detalle de las Noticias</h1>
+	<h3 th:text="'Nombre: ' + ${noticia.tituloGrande}"></h3>
+	<h3 th:text="'Titulo grande tendencia: ' + ${noticia.tituloGrandeTendencia}"></h3>
+	<h3 th:text="'Descripcion pequeña tendencia: ' + ${noticia.descripcionpeqtend}"></h3>
+	<h3 th:text="'Titulo grande tendencia: ' + ${noticia.tituloGrandeTendencia}"></h3>
+	<h3 th:text="'Titulo grande numeros ' + ${noticia.tituloGrandeNumeros}"></h3>
+	<h3 th:text="'Descripcion numeros: ' + ${noticia.descripcionNumeros}"></h3>
+	<h3 th:text="'Titulo grande App: ' + ${noticia.tituloGrandeApp}"></h3>
+	<h3 th:text="'Descripcion pequeña App: ' + ${noticia.descripcionPequeaApp}"></h3>
+	<h3 th:text="'Fecha: ' + ${noticia.fecha}"></h3>	
+	<h3 th:text="'Detalle: ' + ${noticia.detalle}"></h3>
+
+</body>
+</html>

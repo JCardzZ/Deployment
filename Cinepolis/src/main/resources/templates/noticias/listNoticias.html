@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>EmpleosApp | Listado de Ofertas de Trabajo</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  </head>
+	<header th:replace="layout/layout :: head"></header>
+
+  <body>
+  
+	<header th:replace="layout/layout :: barra"></header>
+
+    <main role="main">     
+      <br>
+            <br>
+            <br>
+      
+      <div class="container"> 
+
+        <div class="card" >
+          <h4 class="card-header text-center"><strong>Sección de Noticias</strong></h4>              
+          <div class="card-body text-center">
+            <a class="btn btn-primary" th:href="@{/noticias/create}" title="Crear nueva Oferta de Trabajo" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
+            <hr>
+            <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Titulo Grande</th>
+                  <th scope="col">Descripción Pequeña</th>                  
+                  <th scope="col">Titulo Grande Tendencia</th>
+                  <th scope="col">Descripción Pequeña Tendencia</th>
+                  <th scope="col">Titulo Grande Numeros</th>
+                  <th scope="col">Titulo Grande App</th>
+                  <th scope="col">Descripción Pequeña App</th>
+                  <th scope="col">Estado</th>
+					<th scope="col">Opciones</th>
+                 
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="noticia : ${noticias}">
+                <!-- 
+                  <td th:text="${noticia.id}"></td>
+                   -->
+                  <td th:text="${noticia.tituloGrande}"></td>                  
+                  <td th:text="${noticia.descripcionPeque}"></td>
+                  <td th:text="${noticia.tituloGrandeTendencia}"></td>
+                  <td th:text="${noticia.descripcionpeqtend}"></td>
+                  <td th:text="${noticia.tituloGrandeNumeros}"></td>
+                  <td th:text="${noticia.tituloGrandeApp}"></td>
+                  <td th:text="${noticia.descripcionPequeaApp}"></td>
+                  <td th:text="${noticia.estado}"></td>
+               
+                    <td>
+                    <a th:href="@{/noticias/edit/{id} (id=${noticia.id}) }" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <br/>
+                    <br/>
+                    <a th:href="@{/noticias/delete/{id} (id=${noticia.id}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                  </td>
+                </tr>                                              
+              </tbody>
+            </table>
+            
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+ 	<header th:replace="layout/layout :: ajustar"></header>
+
+ 	<header th:replace="layout/layout :: pie"></header>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
+  </body>
+</html>

@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "cinepolis.ruta.imagenes",
+    "type": "java.lang.String",
+    "description": "A description for 'cinepolis.ruta.imagenes'"
+  },
+  {
+    "name": "cinepolis1.ruta1.imagenes1",
+    "type": "java.lang.String",
+    "description": "A description for 'cinepolis1.ruta1.imagenes1'"
+  },
+  {
+    "name": "cinepolis2.ruta2.imagenes2",
+    "type": "java.lang.String",
+    "description": "A description for 'cinepolis2.ruta2.imagenes2'"
+  }
+]}

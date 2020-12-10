@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Cinépolis</title>
+<head th:replace="layout/layout :: head"></head>
+<head th:replace="layout/layout :: ok"></head>
+</head>
+<body>
+
+	<header th:replace="layout/layout :: barra"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+
+			<div class="card-header bg-light text-center" >
+					<a href="#" class="btn btn-outline-danger  my-4"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+					Cinépolis - Compras</a>
+			
+			</div>
+			<div class="card-body">
+				<h4 class="card-title">
+					<a class="btn btn-light btn-xs"
+						th:href="@{'/clientes/ver/' + ${tiket.cliente.id}}"
+						th:text="'&laquo; Atrás'"></a>
+				</h4>
+
+				<form th:action="@{/tiket/form}" th:object="${tiket}" method="post">
+
+					<div class="form-group row">
+
+						<label class="col-sm-2 col-form-label" th:text="'Nombre'"></label>
+						
+						<div class="col-sm-6">
+							<input
+								th:value="${tiket.cliente.nombre} + ' ' + ${tiket.cliente.apellido}"
+								class="form-control" disabled='disabled' />
+						</div>
+					</div>
+
+
+					<div class="form-group row">
+						<label for="detalle" class="col-sm-2 col-form-label"
+							th:text="'Detalle'"></label>
+						<div class="col-sm-6">
+							<input th:field="*{detalle}" class="form-control"  />
+
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="descripcion" class="col-sm-2 col-form-label"
+							th:text="'Descripción'"></label>
+						<div class="col-sm-6">
+							<textarea th:field="*{descripcion}" class="form-control" required="required"></textarea>
+						</div>
+					</div>
+
+
+					<div class="form-group row">
+						<label for="buscar_producto" class="col-sm-2 col-form-label"
+							th:text="'Buscar producto'"></label>
+						<div class="col-sm-6">
+							<input type="text" name="buscar_producto" id="buscar_producto"
+								class="form-control" />
+						</div>
+					</div>
+
+					<table th:replace="tiket/plantilla-items :: itemsTiket"></table>
+
+					<table id="cargarItemProductos"
+						class="table table-sm table-striped table-hover">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Precio</th>
+								<th>Cantidad</th>
+								<th>Total</th>
+								<th>Eliminar</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+					<h5>Total <span class="badge badge-danger" id="gran_total">0</span></h5>
+
+
+					<div class="form-group row">
+						<div class="col-sm-6">
+
+							<input type="submit" th:value="${titulo}"
+								class="btn btn-outline-danger">
+						</div>
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+	 
+<head th:replace="layout/layout :: okf"></head>
+
+<script th:replace="tiket/js/autocomplete-productos :: javascript"></script>
+
+
+
+</html>

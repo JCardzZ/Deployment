@@ -1,0 +1,39 @@
+<div th:fragment="menu-principal" class="contenedor">
+  <a class="navbar-brand logotipo" th:href="@{/}" style="color: red;"><h1>CINEPOLIS</h1></a>
+
+			<nav>
+	
+				<a href="#" class="activo">Inicio</a>
+				<a href="#">Programas</a>
+				<a th:href="@{/peliculas/indexPaginate}">Peliculas</a>
+				<a th:href="@{/generos/indexPaginate}">Generos</a>
+				<a href="#">Mi lista</a>
+				<a href="#">Acerca</a>
+					<a href="" class="btn btn-danger " >Iniciar sesión</a>
+			</nav>
+		</div>
+		
+		<!--  
+<nav th:fragment="menu-principal" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" th:href="@{/}">EmpleosApp</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/vacantes/index}">Vacantes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/categorias/index}">Categorias</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Menu 2</a>
+      </li>          
+    </ul>  
+    <a class="btn btn-primary" href="#">Ingresar</a>&nbsp;
+    <a class="btn btn-primary" href="#">Registrarse</a>
+  </div>
+</nav>
+-->

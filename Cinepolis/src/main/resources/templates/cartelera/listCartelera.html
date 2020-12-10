@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Cinépolis | Creación de Cartelera</title>
+     <!--  --> <link rel="stylesheet" type="text/css" href="bootstrap/css/theme.css" />
+ 	<link rel="stylesheet" href="bootstrap/css/estilos.css">
+    
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" >
+    
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="shortcut icon" type="image/png" href="/images/logo.png">
+
+    <!-- Carga del CSS de "Bootstrap" -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Carga del CSS de "Font Awesome" -->
+    <link rel="stylesheet" href="/css/all.css">
+
+    <!-- Carga del CSS de "Swiper" -->
+    <link rel="stylesheet" href="/css/swiper.min.css">
+
+    <!-- Carga del CSS de "VenoBox" -->
+    <link rel="stylesheet" href="/css/venobox.css">
+
+    <!-- Carga del CSS de "Jarallax" -->
+    <link rel="stylesheet" href="/css/jarallax.css">
+
+    <!-- Carga del CSS de "Pickadate.js" -->
+    <link rel="stylesheet" href="/js/pickadate.js/themes/default.css">
+
+
+    <!-- Carga del CSS de "Date Picker" -->
+    <link rel="stylesheet" href="/js/pickadate.js/themes/default.date.css">
+
+
+    <!-- Carga del CSS de "Time Picker" -->
+    <link rel="stylesheet" href="/js/pickadate.js/themes/default.time.css">
+
+<!-- Carga de Fuentes de google-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+
+
+    <!-- Carga del CSS personalizado -->
+    <link rel="stylesheet" href="/css/estilos.css">
+  </head>
+    <!-- Carga del CSS de "Bootstrap" -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Carga del CSS de "Font Awesome" -->
+    <link rel="stylesheet" href="css/all.css">
+
+    <!-- Carga del CSS de "Swiper" -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+
+    <!-- Carga del CSS de "VenoBox" -->
+    <link rel="stylesheet" href="css/venobox.css">
+
+    <!-- Carga del CSS de "Jarallax" -->
+    <link rel="stylesheet" href="css/jarallax.css">
+
+    <!-- Carga del CSS de "Pickadate.js" -->
+    <link rel="stylesheet" href="js/pickadate.js/themes/default.css">
+
+  
+
+  <body>
+
+<body>
+   
+   	<header th:replace="layout/layout :: barra"></header>
+
+    <main role="main">     
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header text-center"><strong style="color: red; font-family: sans-serif;">Sección de Cartelera</strong></h4>              
+          <div class="card-body text-center">
+            <a class="btn btn-primary" th:href="@{/cartelera/create}" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
+            <hr>
+            <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Titulo</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="cat : ${carteleras}">
+                  <th scope="row" th:text="${cat.id}"></th>
+                  <td th:text="${cat.titulo}"></td>
+                  
+                  <!-- 
+                            		<td><img
+				th:src="@{/images/{img} (img=${cat.archivo})}" width="136"
+				height="136"></td>
+                   -->
+        
+				<!-- 
+				                  <td th:text="${cat.archivo}"></td>
+				
+				 -->
+                  <td th:text="${cat.estado}"></td>
+                  
+                  <td>
+                    <a th:href="@{/cartelera/edit/{id} (id=${cat.id})}" class="btn btn-success btn-sm" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/cartelera/delete/{id} (id=${cat.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <!-- 
+                    <a th:href="@{/noticias/edit/{id} (id=${noticia.id}) }" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    
+                     -->
+                  </td>
+                </tr>                              
+              </tbody>
+            </table>
+            
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+    <br/>
+        <br/>
+        <br/>
+        <br/>
+    
+<header th:replace="layout/layout :: ajustar"></header>
+
+	<header th:replace="layout/layout :: pie"></header>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
+  </body>
+</html>

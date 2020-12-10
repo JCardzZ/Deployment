@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 
+<h1>Bienvenido a la pagina principal</h1>
+<h2>Hoy es [[${fecha}]]</h2>
+ -->
+
+	<h1>Bienvenido</h1>
+	<h2>Lista de peliculas</h2>
+	<h3 th:text="'Titulo: ' + ${nombre}"></h3>
+	<h3 th:text="'Fecha: ' + ${fecha}"></h3>
+	<h3 th:text="'Precio: ' + ${precio}"></h3>
+	<h3 th:text="'Vigente: ' + ${vigente}"></h3>
+
+
+</body>
+</html>

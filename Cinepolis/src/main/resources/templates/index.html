@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<title>Cinépolis</title>
+
+<head th:replace="layout/layout :: head"></head>
+
+
+<body>
+	<header th:replace="layout/layout :: barra"></header>
+
+	<header th:replace="layout/layout :: animacion"></header>
+	
+
+	<!-- Sección #bienvenidos -->
+	<section id="bienvenidos" class="py-5">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-lg-6 text-center">
+
+					<div
+						class="contenedor-video d-inline-block position-relative text-truncate">
+
+						<img src="images/x.jpg"
+							alt="Imagen del video promocional del Sitio" class="img-fluid">
+
+						<a href="https://youtu.be/BUFKUy_c5Tw" class="venobox-video"
+							data-vbtype="video" title="Bienvenidos a Cinépolis."><i
+							class="fas fa-play"></i></a>
+
+					</div>
+
+				</div>
+
+				<div class="col-12 col-lg-6  pt-4 pt-lg-0 text-center text-lg-left">
+					<h2 class="display-4 font-weight-bold text-secondary  mt-lg-n2">
+						<span class="text-danger">NOTICIAS & NOVEDADES </span>
+					</h2>
+					<h6 class="text-black-50">Mas detalles</h6>
+					<p>Pelicula Bob Esponja al rescate (2020) de Sinopsis Bob
+						Esponja adivina Gary fue secuestrado. Entonces Bob Esponja le pide
+						a Patrick (Bill Fagerbakke), un vecino y amigo, que ayude a
+						encontrar a Gary. Misión de búsqueda Gary trae Bob Esponja y
+						Patrick a la zona de salida de Fondo de Bikini.</p>
+					<a href="#" class="btn btn-primary mt-3">Leer más</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Seccion #peliculas -->
+	<section id="test" class="py-5">
+		<div class="text-center" role="alert">
+										<a th:href="@{/cartel}" class="btn btn-primary  ">VISITA NUESTRA CARTELERA EN SAN SALVADOR, EL SALVADOR</a>
+		
+		</div>
+		<br />
+
+		<div class="container marketing">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-3"
+					th:each="pelicula : ${peliculas}">
+					<br />
+					<div>
+						<a th:href="@{/peliculas/view/{id} (id=${pelicula.id}) }"
+							class="logo"> <img class="img-rounded" th:src="@{/logos/{img} (img=${pelicula.imagen})}"
+							alt="Generic placeholder image" width="250" height="350">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+
+
+	<header th:replace="layout/layout :: ayuda"></header>
+
+	<header th:replace="layout/layout :: premios"></header>
+
+	<header th:replace="layout/layout :: app"></header>
+
+	<header th:replace="layout/layout :: contacto"></header>
+
+	<header th:replace="layout/layout :: pie"></header>
+
+	<header th:replace="layout/layout :: carga"></header>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Cinépolis</title>
+<head th:replace="layout/layout :: head"></head>
+
+</head>
+<body>
+	<header th:replace="layout/layout :: barra"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header bg-dark text-center">
+					<h5 style="color: white;" class="text-center" th:text="${titulo}">
+					</h5>
+			</div>
+
+			<div class="card-body">
+
+				<div class="text-center">
+					<div class="alert alert-success" th:if="${success != null}"
+						th:text="${success}"></div>
+
+					<div class="alert alert-danger" th:if="${error != null}"
+						th:text="${error}"></div>
+					<div class="alert alert-warning" th:if="${warning != null}"
+						th:text="${warning}"></div>
+					<div class="alert alert-info" th:if="${info != null}"
+						th:text="${info}"></div>
+				</div>
+				<h4 class="card-title text-center">
+
+					<a class="btn btn-outline-success"
+						th:href="@{'/tiket/form/' + ${cliente.id}}" role="button"><i
+						class="fa fa-plus" aria-hidden="true"></i> Nuevo Tiket</a>
+
+				</h4>
+
+				<img th:if="${#strings.length(cliente.foto) > 0}"
+					class="img-thumbnail rounded float-left" style="max-width: 25%;"
+					th:src="@{'/clientes/' + ${cliente.foto}}" th:alt="${cliente.foto}" />
+
+
+				<ul class="list-group">
+					<li class="list-group-item active" th:text="${cliente.nombre}"></li>
+					<li class="list-group-item" th:text="${cliente.apellido}"></li>
+					<li class="list-group-item" th:text="${cliente.celular}"></li>
+					<li class="list-group-item" th:text="${cliente.email}"></li>
+					<li class="list-group-item" th:text="${cliente.direccion}"></li>
+					<li class="list-group-item" th:text="${cliente.departamento}"></li>
+					<li class="list-group-item" th:text="${cliente.ciudad}"></li>
+					<li class="list-group-item" th:text="${cliente.fechaTiket}"></li>
+				</ul>
+				<div th:if="${#lists.isEmpty(cliente.tikets)}"
+					class="alert alert-info my-4 text-center"
+					th:text="'No hay tikets asignados para el cliente '+${cliente.nombre}+' ' + ${cliente.apellido}"></div>
+				<table th:if="${not #lists.isEmpty(cliente.tikets)}"
+					class="table table-hover my-4">
+					<thead class="thead-light">
+						<tr>
+							<th>Nº Tiket</th>
+							<th>Detalle</th>
+							<th>Descripción</th>
+							<th>Fecha</th>
+							<th>Total</th>
+							<th>Ver</th>
+							<th>Eliminar</th>
+
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="tiket: ${cliente.tikets}">
+							<td th:text="${tiket.id}"></td>
+							<td th:text="${tiket.descripcion}"></td>
+							<td th:text="${tiket.detalle}"></td>
+							<td th:text="${tiket.fechaEmision}"></td>
+							<td th:text="${tiket.total}"></td>
+							<td><a th:href="@{'/tiket/ver/' + ${tiket.id}}"
+								class="btn btn-outline-info btn-sm" role="button"
+								title="Detalle"><i class="fa fa-info" aria-hidden="true"></i></a>
+
+
+							</td>
+
+
+							<td><a th:href="@{'/tiket/eliminar/' + ${tiket.id}}"
+								onclick="return confirm('¿Estas seguro?')"
+								class="btn btn-outline-danger btn-sm" role="button"
+								title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+							</td>
+
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+
+	<header th:replace="layout/layout :: ajustar"></header>
+
+	<header th:replace="layout/layout :: pie"></header>
+
+</body>
+</html>

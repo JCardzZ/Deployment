@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="favicon.ico">
+
+<title>Cinepolis | Peliculas registradas</title>
+<!-- Bootstrap core CSS -->
+<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}"
+	rel="stylesheet">
+	
+	
+	
+<link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+	rel="stylesheet">
+	
+ 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="shortcut icon" type="image/png" href="/images/logo.png">
+
+    <!-- Carga del CSS de "Bootstrap" -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Carga del CSS de "Font Awesome" -->
+    <link rel="stylesheet" href="/css/all.css">
+
+    <!-- Carga del CSS de "Swiper" -->
+    <link rel="stylesheet" href="/css/swiper.min.css">
+
+    <!-- Carga del CSS de "VenoBox" -->
+    <link rel="stylesheet" href="/css/venobox.css">
+
+    <!-- Carga del CSS de "Jarallax" -->
+    <link rel="stylesheet" href="/css/jarallax.css">
+
+    <!-- Carga del CSS de "Pickadate.js" -->
+    <link rel="stylesheet" href="/js/pickadate.js/themes/default.css">
+
+
+    <!-- Carga del CSS de "Date Picker" -->
+    <link rel="stylesheet" href="/js/pickadate.js/themes/default.date.css">
+
+
+    <!-- Carga del CSS de "Time Picker" -->
+    <link rel="stylesheet" href="/js/pickadate.js/themes/default.time.css">
+
+<!-- Carga de Fuentes de google-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+
+
+    <!-- Carga del CSS personalizado -->
+    <link rel="stylesheet" href="/css/estilos.css">
+</head>
+
+
+
+<body>
+   
+	<header th:replace="layout/layout :: barra"></header>
+
+	<main role="main">
+		<br />
+		 <br/>
+            <br/>
+            
+		<div class="container-lg">
+
+			<div class="card ">
+				<h4 class="card-header text-center">
+					<strong  class="text-danger">Sección de Peliculas</strong>
+				</h4>
+				<div class="card-body ">
+				<div class="text-center">
+						<a class="btn btn-primary btn-lg"
+							th:href="@{/peliculas/create}" title="Crear nueva pelicula"
+							role="button"><i class="fas fa-file" aria-hidden="true"></i>
+							Nueva Pelicula</a>
+					
+					</div>
+					<hr>
+					<div th:if="${msg != null}" class='alert alert-success text-center'
+						th:text="${msg}" role='alert'></div>
+					<table class="table table-hover">
+						<thead class="thead-light">
+							<tr>
+								<th scope="col">Genero</th>
+								<th scope="col">Titulo</th>
+								<th scope="col">Idioma</th>
+								<th scope="col">Duracion</th>
+								<th scope="col">Clasificación</th>
+								<th scope="col">Estado</th>
+								<th scope="col">Estreno</th>
+								<th scope="col">Reciente</th>
+								<th scope="col">Subtitulos</th>
+								<th scope="col">Precio</th>
+								<th scope="col">Operaciones</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="pelicula : ${peliculas}">
+								<td th:text="${pelicula.genero.nombre}"></td>
+								<td th:text="${pelicula.titulo}"></td>
+								<td th:text="${pelicula.idioma}"></td>
+								<td th:text="${pelicula.duracion}"></td>
+								<td th:text="${pelicula.clasificacion}"></td>
+								<td th:text="${pelicula.estatus}"></td>
+								<td th:text="${#dates.format(pelicula.fechaEstreno, 'dd-MM-yyyy')}"></td>
+
+								<td><span th:if="${pelicula.destacada== 1}"
+									class="badge badge-success">Si</span> <span
+									th:unless="${pelicula.destacada== 1}"
+									class="badge badge-danger">No</span></td>
+								<td th:text="${pelicula.subtitulos}"></td>
+								<td th:text="${pelicula.precio}"></td>
+
+
+
+								<!-- 
+                  <td th:text="${pelicula.destacado==1 ? 'SI' : 'NO' }"></td>
+                                     -->
+
+								<td><a
+									th:href="@{/peliculas/edit/{id} (id=${pelicula.id}) }" class="btn btn-success btn-sm" role="button"
+									title="Editar el registro."><i class="fas fa-pencil-alt"
+										aria-hidden="true"></i></a>
+										<br/>
+										<br/>
+										 <a
+									th:href="@{/peliculas/delete/{id} (id=${pelicula.id}) }"
+									onclick="return confirm('¿Estas seguro?')"
+									class="btn btn-success btn-sm" role="button"
+									title="Eliminar el registro."><i class="fas fa-trash"
+										aria-hidden="true"></i></a></td>
+							</tr>
+						</tbody>
+					</table>
+
+					<nav th:if="${peliculas.totalPages > 0}"
+						aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+							<li class="page-item"
+								th:classappend="${peliculas.number == 0 ? 'disabled' : ''}">
+								<a
+								th:href="@{/peliculas/indexPaginate(page=${peliculas.number - 1})}"
+								class="page-link">Anterior</a>
+							</li>
+
+							<li class="page-item"
+								th:classappend="${i eq peliculas.number + 1} ? 'active'"
+								th:each="i : ${#numbers.sequence( 1, peliculas.totalPages, 1)}">
+								<a class="page-link"
+								th:href="@{/peliculas/indexPaginate?page={tmpPag} (tmpPag=${i-1}) }"
+								th:text="${i}" th:title="${'Page '+ i}" data-toggle="tooltip"></a>
+							</li>
+							<li class="page-item"
+								th:classappend="${peliculas.number == (peliculas.totalPages - 1) ? 'disabled' : ''}">
+								<a
+								th:href="@{/peliculas/indexPaginate(page=${peliculas.number + 1})}"
+								class="page-link">Siguiente</a>
+							</li>
+						</ul>
+					</nav>
+
+				</div>
+			</div>
+		</div>
+		<!-- /container -->
+		<br />
+	</main>
+	<header th:replace="layout/layout :: ajustar"></header>
+
+	<header th:replace="layout/layout :: pie"></header>
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Cinépolis</title>
+<head th:replace="layout/layout :: head"></head>
+
+</head>
+<body>
+	<header th:replace="layout/layout :: barra"></header>
+
+	<div class="container  py-4">
+		<div class="card  bg-light">
+			<div class="card-header bg-dark text-center" style="color: white;" th:text="${titulo}"></div>
+			<div class="card-body ">
+				<h4 class="card-title">
+					<a th:href="@{'/clientes/ver/' + ${tiket.cliente.id}}"
+						class="btn btn-outline-dark btn-xs" title="Atrás"><i class="fa fa-reply-all" aria-hidden="true"></i>
+						</a>
+						<a class="btn btn-danger btn-xs float-right mx-2"  th:href="@{'/tiket/ver/' + ${tiket.id}(format=pdf)}" title="Ver o descargar Tiket en PDF"><i class="fas fa-file-pdf"></i></a>
+						
+				</h4>
+
+				<ul class="list-group my-2 text-center">
+					<li class="list-group-item list-group-item-success"
+					style="color: black;"	th:text="'Datos del cliente'"></li>
+					<li class="list-group-item" th:text="${tiket.cliente}"></li>
+					<li class="list-group-item" th:text="${tiket.cliente.email}"></li>
+				</ul>
+
+				<ul class="list-group text-center">
+					<li class="list-group-item list-group-item-danger"
+					style="color: black;"	th:text="'Datos del Tiket'"></li>
+					<li class="list-group-item" th:text="'N° Tiket: ' + ${tiket.id}"></li>
+					<li class="list-group-item"
+						th:text="'Descripción: ' + ${tiket.descripcion}"></li>
+					<li class="list-group-item"
+						th:text="'Fecha: ' + ${tiket.fechaEmision}"></li>
+				</ul>
+
+				<div class="alert alert-info my-4"
+					th:if="${#lists.isEmpty(tiket.items)}"
+					th:text="'No hay lineas para el Tiket ' + ${tiket.descripcion}"></div>
+
+				<table th:if="${not #lists.isEmpty(tiket.items)}"
+					class="table table-hover my-3">
+					<thead class="thead-light">
+						<tr>
+							<th>Producto</th>
+							<th>Precio</th>
+							<th>Cantidad</th>
+							<th>Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="linea: ${tiket.items}">
+							<td th:text="${linea.producto.nombre}"></td>
+							<td th:text="${linea.producto.precio}"></td>
+							<td th:text="${linea.cantidad}"></td>
+							<td th:text="${linea.calcularImporte()}"></td>
+						</tr>
+					</tbody>
+				</table>
+				<h5 class="float-right">
+				Total <span th:text="${tiket.total}"
+						class="badge badge-secondary"></span>
+				</h5>
+
+				<div class="card border-info mb-4" style="max-width: 20rem;">
+					<div class="card-header bg-dark" style="color: white;">Detalles</div>
+					<div class="card-body">
+						<p class="card-text" th:text="${tiket.detalle}"
+							th:if="${not #strings.isEmpty(tiket.detalle)}"></p>
+						<h5 class="card-title" th:if="${#strings.isEmpty(tiket.detalle)}"
+							th:text="'¡No tienes detalles!'"></h5>
+					</div>
+				</div>
+				<a th:href="@{'/clientes/ver/' + ${tiket.cliente.id}}"
+						class="btn btn-outline-dark btn-xs" title="Atrás"><i class="fa fa-reply-all" aria-hidden="true"></i></a>
+			</div>
+		</div>
+	</div>
+
+	<header th:replace="layout/layout :: ajustar"></header>
+
+	<header th:replace="layout/layout :: pie"></header>
+
+</body>
+</html>

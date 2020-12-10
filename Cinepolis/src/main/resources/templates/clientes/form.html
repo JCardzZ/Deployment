@@ -1,0 +1,317 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Cinepolis | Clientes</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="shortcut icon" type="image/png" href="">
+
+<!-- Bootstrap core CSS -->
+<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}"
+	rel="stylesheet">
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+	rel="stylesheet">
+
+<!-- Carga del CSS de Bootstrap -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<!-- Carga del CSS de Font Awesome -->
+<link rel="stylesheet" href="/css/all.css">
+<style>
+.row>* {
+	/* border: 1px solid red; */
+	
+}
+</style>
+
+
+<link rel="shortcut icon" type="image/png" href="/images/logo.png">
+
+<!-- Carga del CSS de "Bootstrap" -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+<!-- Carga del CSS de "Font Awesome" -->
+<link rel="stylesheet" href="/css/all.css">
+
+<!-- Carga del CSS de "Swiper" -->
+<link rel="stylesheet" href="/css/swiper.min.css">
+
+<!-- Carga del CSS de "VenoBox" -->
+<link rel="stylesheet" href="/css/venobox.css">
+
+<!-- Carga del CSS de "Jarallax" -->
+<link rel="stylesheet" href="/css/jarallax.css">
+
+<!-- Carga del CSS de "Pickadate.js" -->
+<link rel="stylesheet" href="/js/pickadate.js/themes/default.css">
+
+
+<!-- Carga del CSS de "Date Picker" -->
+<link rel="stylesheet" href="/js/pickadate.js/themes/default.date.css">
+
+
+<!-- Carga del CSS de "Time Picker" -->
+<link rel="stylesheet" href="/js/pickadate.js/themes/default.time.css">
+
+<!-- Carga de Fuentes de google-->
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700"
+	rel="stylesheet">
+
+
+<!-- Carga del CSS personalizado -->
+<link rel="stylesheet" href="/css/estilos.css">
+
+</head>
+
+<body>
+	<header th:replace="layout/layout :: barra"></header>
+
+
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-lg-9">
+				<section class=""></section>
+
+				<div class="clas "></div>
+
+				<form th:action="@{/clientes/form}" th:object="${cliente}"
+					method="post" class="bg-light my-3 p-3 border rounded"
+					enctype="multipart/form-data">
+					<div class="text-center">
+						<h2 class="mb-4">Formulario de Cliente</h2>
+					</div>
+					<div class="form-row mb-4">
+
+						<h4 class="col-12 text-danger mb-3">
+							<span class="fa-stack h5 mb-0"> <i
+								class="fas fa-circle fa-stack-2x"></i> <i
+								class="fas fa-user fa-stack-1x fa-inverse"></i>
+							</span> Información personal
+						</h4>
+
+					
+						<div class="form-group row">
+							<label for="file" class="col-sm-2 col-form-label">Foto</label>
+							<div class="col-sm-6">
+								<input type="file" name="file" class="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group col-12 col-sm-6">
+							<label for="nombre">Nombre:</label> <input type="text"
+								th:field="*{nombre}" name="nombre" id="nombre"
+								class="form-control" placeholder="Ejem: Juan Miguel..."
+								required="required"> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+
+						</div>
+
+						<div class="form-group col-12 col-sm-6">
+							<label for="apellidos">Apellidos:</label> <input type="text"
+								th:field="*{apellido}" name="apellidos" id="apellidos"
+								class="form-control" placeholder="Ejem: Juan Perez ..."
+								required="required">
+
+						</div>
+
+						<div class="form-group col-12 col-sm-6">
+							<label for="email">Email:</label> <input type="email"
+								th:field="*{email}" name="email" id="email" class="form-control"
+								placeholder="Ejem: usuario@gmail.com...">
+						</div>
+
+						<div class="form-group col-12 col-sm-6">
+							<label for="telefono">Teléfono:</label> <input type="text"
+								th:field="*{celular}" name="telefono" id="telefono"
+								class="form-control" placeholder="Ejem: 7978-0934"
+								required="required">
+						</div>
+					</div>
+
+					<div class="form-row mb-4">
+
+						<h4 class="col-12 text-danger  mb-3">
+							<span class="fa-stack h5 mb-0"> <i
+								class="fas fa-circle fa-stack-2x"></i> <i
+								class="fas fa-map-marker-alt fa-stack-1x fa-inverse"></i>
+							</span> Dirección de cliente
+						</h4>
+						<div class="form-group col-12">
+							<label for="direccion">Dirección:</label> <input type="text"
+								th:field="*{direccion}" name="direccion" id="direccion"
+								class="form-control" placeholder="av. Las flores..."
+								required="required">
+						</div>
+
+						<div class="form-group col-6 col-sm-6">
+							<label for="departamento">Departamento:</label> <input
+								type="text" th:field="*{departamento}" name="departamento"
+								id="departamento" class="form-control"
+								placeholder="Ejem: San Salvador" required="required">
+						</div>
+
+						<div class="form-group col-6 col-sm-6">
+							<label for="ciudad">Ciudad:</label> <input type="text"
+								th:field="*{ciudad}" name="ciudad" id="ciudad"
+								class="form-control" placeholder="Ejem: San Miguel"
+								required="required">
+						</div>
+
+					</div>
+
+
+					<div class="form-row mb-4">
+
+
+						<h4 class="col-12 text-danger  mb-3">
+							<span class="fa-stack h5 mb-0"> <i
+								class="fas fa-circle fa-stack-2x"></i> <i
+								class="fas fa-calendar-alt fa-stack-1x fa-inverse"></i>
+							</span> Fecha de registro
+						</h4>
+
+						<div class="col-12 col-md-6">
+
+							<div class="form-row">
+
+								<div class="form-group col-12 col-sm-6 col-md-12">
+									<label for="fecha-envio">Fecha de registro:</label> <input
+										type="text" class="form-control" name="fechaEstreno"
+										th:field="*{fechaTiket}" id="fecha"
+										placeholder="Fecha de publicacion" required="required">
+
+									<!-- 
+                                    <input type="text" name="fecha-envio" id="fecha-envio" class="form-control"
+                                        placeholder="Ejem: 11/12/2020">
+                                        -->
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="form-row">
+
+						<div class="col-12 col-md-3">
+							<!-- 
+                        <td><input type="submit" value="Crear Cliente"></td>
+                         -->
+
+							<button type="submit" class="btn btn-primary btn-block mb-2">
+								<i class="fas fa-location-arrow pr-1"></i>Guardar
+							</button>
+						</div>
+
+						<div class="col-12 col-md-3">
+
+							<button th:href="@{/}" type="reset"
+								class="btn btn-secondary btn-block">
+								<i class="fas fa-times pr-1"></i>Cancelar
+							</button>
+						</div>
+
+
+					</div>
+
+
+					<input type="hidden" th:field="*{id}" />
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<header th:replace="layout/layout :: pie"></header>
+
+
+
+	<!-- Carga de "Jquery" -->
+	<script src="js/jquery-3.3.1.min.js"></script>
+
+	<!-- Carga de "Popper" -->
+	<script src="js/popper.min.js"></script>
+
+	<!-- Carga de "Bootstrap" -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Carga de "Swiper" -->
+	<script src="js/swiper.min.js"></script>
+
+	<!-- Carga de "VenoBox" -->
+	<script src="js/venobox.min.js"></script>
+
+	<!-- Carga de "Jarallax" -->
+	<script src="js/jarallax.min.js"></script>
+
+	<!-- Carga de "PictureFill" -->
+	<script src="js/picturefill.min.js"></script>
+
+	<!-- Carga de "Waypoints" -->
+	<script src="js/jquery.waypoints.min.js"></script>
+
+	<!-- Carga de "jquery.counterup" -->
+	<script src="js/jquery.counterup.min.js"></script>
+
+	<!-- Carga de "Picker.js" | Crea el selector de fecha y de hora-->
+	<script src="js/pickadate.js/picker.js"></script>
+
+	<!-- Carga de "picker.date.js" | Crea el selector de fecha-->
+	<script src="js/pickadate.js/picker.date.js"></script>
+
+	<!-- Carga de "picker.time.js" | Crea el selector de fecha-->
+	<script src="js/pickadate.js/picker.time.js"></script>
+
+	<!-- Carga de "parsley.js" | Crea la validación de formularios-->
+	<script src="js/parsley.min.js"></script>
+	<script src="js/parsley.es.js"></script>
+
+
+
+	<!-- Carga de "Jquery Stickit.js" | Crean un encabezado fijo en la parte superior de la página-->
+	<script src="js/jquery.stickit.min.js"></script>
+
+
+	<!-- Carga de "page-scroll-to-id" | Crean el efecto de scroll entre los enlaces-->
+	<script src="js/jquery.malihu.PageScroll2id.min.js"></script>
+
+	<!-- Carga de "css_browser_selector" | Crean clases para identificar un disp.-->
+	<script src="js/css_browser_selector.js"></script>
+
+
+
+
+	<!-- Archivo para configurar e iniciar las funciones de los scripts -->
+	<script src="js/mis-scripts.js"></script>
+
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script th:src="@{/tinymce/tinymce.min.js}"></script>
+	<script>
+		$(function() {
+			$("#fecha").datepicker({
+				dateFormat : 'dd-mm-yy'
+			});
+		});
+
+		tinymce
+				.init({
+					selector : '#sinopsis',
+					plugins : "textcolor, table lists code",
+					toolbar : " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\
+                    | bullist numlist outdent indent | forecolor backcolor table code"
+				});
+	</script>
+
+
+</body>
+
+</html>
